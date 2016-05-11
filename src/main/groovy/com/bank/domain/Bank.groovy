@@ -15,7 +15,7 @@ class Bank {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique = true)
-    private int sortCode;
+    int sortCode;
 
 
     @ManyToMany(cascade =  [CascadeType.MERGE,CascadeType.REFRESH])

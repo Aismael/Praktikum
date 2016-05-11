@@ -20,13 +20,28 @@ class testBank extends Specification {
     private static final Logger log = LoggerFactory.getLogger(GroovaaApplication.class);
 
 
-    def "testBankService"() {
+    def "testBankServiceCreate"() {
         bankService.create("db");
         expect:
         bankRepository.exists(1)
         log.info("                                     ")
         log.info("=====================================")
         log.info("Created one bank with the BankService")
+        log.info(bankRepository.findByName("db").toString())
+        log.info("=====================================")
+        log.info("                                     ")
+
+
+    }
+
+    def "testBankServiceRead"() {
+        bankService.read(bankRepository.findByName("db").first().sortCode)
+        bankService.read("db")
+        expect:
+        bankRepository.exists(1)
+        log.info("                                     ")
+        log.info("=====================================")
+        log.info("Read one bank with the BankService")
         log.info(bankRepository.findByName("db").toString())
         log.info("=====================================")
         log.info("                                     ")

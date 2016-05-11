@@ -23,6 +23,11 @@ public class BankService {
     def read(int id){
         bankRepository.getOne(id)
     }
+
+    @Transactional
+    def read(String name){
+        this.read(bankRepository.findByName("db").first().sortCode);
+    }
     @Transactional
     def update(Bank bank){
         bankRepository.save(bank)
@@ -31,4 +36,6 @@ public class BankService {
     def delete(Bank bank){
         bankRepository.delete(bank)
     }
+
+
 }
